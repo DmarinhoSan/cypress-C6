@@ -9,7 +9,7 @@ Cypress.Commands.add('fillMandatoryFieldsAndSubmit', (data = {
   cy.get('#email').type(data.email) //Pega o campo pelo id e insere um texto
   cy.get('#open-text-area').type(data.text) //Pega o campo pelo id e insere um texto com delay de 0
   cy.get('button[type="submit"]').click() //Pega o botão pelo seletor e clica
-})  
+})
 
 // ***********************************************
 // This example commands.js shows you how to
