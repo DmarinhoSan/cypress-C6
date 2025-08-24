@@ -183,6 +183,22 @@ describe('Central de Atendimento ao Cliente TAT', () => { //Define Suite de test
       cy.contains('h1', 'CAC TAT - Política de Privacidade').should('be.visible')
     })
 
+    // Teste para selecionar um arquivo utilizando uma fixture com alias
+    it.only('faz uma requisição HTTP', () => {
+      cy.request('https://cac-tat.s3.eu-central-1.amazonaws.com/index.html') //Faz a requisição HTTP
+        .as('getRequest') //Cria um alias para a requisição  
+        .its('status') //Pega o status da requisição
+        .should('be.equal', 200) //Verifica se o status é 200
+      
+      cy.request('@getRequest') //Faz a requisição HTTP
+        .its('statusText') //Pega o body da requisição
+        .should('be.equal', 'OK') //Verifica se o body inclui o
+      
+      cy.get('@getRequest') //Faz a requisição HTTP
+        .its('body') //Pega o body da requisição
+        .should('include', 'CAC TAT') //Verifica se o body inclui o texto 'CAC TAT'
+      
+    })
 
-    
+
 })
